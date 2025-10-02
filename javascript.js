@@ -1,4 +1,5 @@
 const gridSelection = document.querySelectorAll(".radio");
+let active = false;
 
 gridSelection.forEach((gs) => {
   gs.addEventListener("input", function (e) {
@@ -9,7 +10,7 @@ gridSelection.forEach((gs) => {
   });
 });
 
-const sketchSize = 960;
+const sketchSize = 500;
 const container = document.querySelector(".container");
 
 function formGrids(numberOfGrids) {
@@ -24,7 +25,9 @@ function formGrids(numberOfGrids) {
 }
 
 const color = document.querySelector("#favcolor");
-let selectedColor = "black";
+
+let selectedColor = "#000000"; //set to black originally;
+
 color.addEventListener("input", function (e) {
   selectedColor = e.target.value;
 });
@@ -32,16 +35,17 @@ const grid = document.querySelectorAll(".grid");
 
 let isDrawing = false;
 container.addEventListener("mousedown", (e) => {
-  console.log("yo");
   isDrawing = true;
 });
 
 container.addEventListener("mousemove", (e) => {
   if (e.target.className !== "grid") isDrawing = false;
   if (isDrawing) {
+    if (active) {
+      selectedColor = randomizeRGB();
+    }
     if (e.target.className === "grid") {
       e.target.style.background = selectedColor;
-      console.log(e.target);
     }
   }
 });
@@ -59,6 +63,27 @@ reset.addEventListener("click", function (e) {
   });
   resetGrids();
 });
+
+const random = document.querySelector(".random");
+
+random.addEventListener("click", function (e) {
+  random.classList.toggle("active");
+  console.log(e.target.classList);
+  if (e.target.classList.contains("active")) {
+    active = true;
+  } else {
+    active = false;
+  }
+});
+
+function randomizeRGB() {
+  const maxExclusive = 256;
+  let r = Math.floor(Math.random() * maxExclusive);
+  let g = Math.floor(Math.random() * maxExclusive);
+  let b = Math.floor(Math.random() * maxExclusive);
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
 
 function resetGrids() {
   const grid = document.querySelectorAll(".grid");
