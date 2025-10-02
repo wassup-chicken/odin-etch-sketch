@@ -10,7 +10,37 @@
     <h1>Etch-a-sketch</h1>
     <div class="container-wrap">
       <div class="options">
-        <div class="color">Select Color</div>
+        <div>
+          <input
+            class="favcolor"
+            type="color"
+            id="favcolor"
+            name="favcolor"
+            value="black"
+          />
+        </div>
+        <div class="groptions">
+          <div class="groptions">
+            <label>9x9</label>
+            <input class="radio" name="grid" type="radio" value="9" />
+          </div>
+          <div class="groptions">
+            <label>16x16</label>
+            <input class="radio" name="grid" type="radio" value="16" />
+          </div>
+          <div class="groptions">
+            <label>25x25</label>
+            <input class="radio" name="grid" type="radio" value="25" />
+          </div>
+          <div class="groptions">
+            <label>36x36</label>
+            <input class="radio" name="grid" type="radio" value="36" />
+          </div>
+          <div class="groptions">
+            <label>49x49</label>
+            <input class="radio" name="grid" type="radio" value="49" />
+          </div>
+        </div>
         <button class="reset">Reset</button>
       </div>
       <div class="container"></div>
